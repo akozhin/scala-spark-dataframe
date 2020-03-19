@@ -5,7 +5,7 @@ lazy val root = (project in file(".")).
   settings(
     inThisBuild(List(
       organization := "com.github.akozhin.data.engineer.spark.dataframe",
-      scalaVersion := "2.11.8"
+      scalaVersion := "2.11.12"
     )),
     name := "scala-spark-dataframe",
     version := "0.0.1",
