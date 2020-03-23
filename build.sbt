@@ -1,3 +1,4 @@
+import sbt.Keys.libraryDependencies
 // give the user a nice default project!
 
 lazy val root = (project in file(".")).
@@ -5,25 +6,28 @@ lazy val root = (project in file(".")).
   settings(
     inThisBuild(List(
       organization := "com.github.akozhin.data.engineer.spark.dataframe",
-      scalaVersion := "2.11.12"
-    )),
+      scalaVersion := "2.11.12",
+        sparkVersion := "2.4.4"
+)),
     name := "scala-spark-dataframe",
     version := "0.0.1",
 
-    sparkVersion := "2.3.0",
-    sparkComponents := Seq(),
+      sparkComponents := Seq(),
 
-    javacOptions ++= Seq("-source", "1.8", "-target", "1.8"),
-    javaOptions ++= Seq("-Xms512M", "-Xmx2048M", "-XX:MaxPermSize=2048M", "-XX:+CMSClassUnloadingEnabled"),
-    scalacOptions ++= Seq("-deprecation", "-unchecked"),
-    parallelExecution in Test := false,
-    fork := true,
+      javacOptions ++= Seq("-source", "1.8", "-target", "1.8"),
+      javaOptions ++= Seq("-Xms512M", "-Xmx2048M", "-XX:MaxPermSize=2048M", "-XX:+CMSClassUnloadingEnabled"),
+      scalacOptions ++= Seq("-deprecation", "-unchecked"),
+      parallelExecution in Test := false,
+      fork := true,
 
-    coverageHighlighting := true,
+      coverageHighlighting := true,
+
 
     libraryDependencies ++= Seq(
-      "org.apache.spark" %% "spark-streaming" % "2.3.0" % "provided",
-      "org.apache.spark" %% "spark-sql" % "2.3.0" % "provided",
+      "org.apache.spark" %% "spark-sql" % "2.4.4",
+      "mrpowers" % "spark-daria" % "0.35.2-s_2.11",
+      "org.json4s" %% "json4s-jackson" % "3.6.7",
+      "org.scala-lang.modules" %% "scala-xml" % "1.2.0",
 
       "org.scalatest" %% "scalatest" % "3.0.1" % "test",
       "org.scalacheck" %% "scalacheck" % "1.13.4" % "test",
@@ -37,6 +41,7 @@ lazy val root = (project in file(".")).
     pomIncludeRepository := { x => false },
 
    resolvers ++= Seq(
+      "Spark Packages Repo" at "http://dl.bintray.com/spark-packages/maven",
       "sonatype-releases" at "https://oss.sonatype.org/content/repositories/releases/",
       "Typesafe repository" at "http://repo.typesafe.com/typesafe/releases/",
       "Second Typesafe repo" at "http://repo.typesafe.com/typesafe/maven-releases/",

@@ -10,5 +10,8 @@ import org.apache.spark.sql.{DataFrame, SparkSession}
 object CountingLocalApp extends App{
   val (crimesCsv, offenceDictCsv, outputFolder) = (args(0), args(1), args(2))
   val spark = SparkSession.builder().master("local[*]").appName(this.getClass.getSimpleName).getOrCreate()
+  spark.sparkContext.setLogLevel("ERROR")
+
   val crimeStat = new BostonCrimeStat(spark,crimesCsv, offenceDictCsv);
+
 }
