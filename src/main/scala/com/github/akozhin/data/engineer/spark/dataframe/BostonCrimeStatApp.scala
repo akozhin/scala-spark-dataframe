@@ -7,11 +7,10 @@ import org.apache.spark.sql.{DataFrame, SparkSession}
   * sbt "run inputFile.txt outputFile.txt"
   *  (+ select CountingLocalApp when prompted)
   */
-object CountingLocalApp extends App{
+object BostonCrimeStatApp extends App{
   val (crimesCsv, offenceDictCsv, outputFolder) = (args(0), args(1), args(2))
   val spark = SparkSession.builder().master("local[*]").appName(this.getClass.getSimpleName).getOrCreate()
   spark.sparkContext.setLogLevel("ERROR")
 
-  val crimeStat = new BostonCrimeStat(spark,crimesCsv, offenceDictCsv);
-
+  BostonCrimeStat.calcAndSave(spark,crimesCsv, offenceDictCsv, outputFolder);
 }

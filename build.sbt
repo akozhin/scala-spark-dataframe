@@ -26,7 +26,8 @@ lazy val root = (project in file(".")).
     libraryDependencies ++= Seq(
       "org.apache.spark" %% "spark-sql" % "2.4.4",
       "mrpowers" % "spark-daria" % "0.35.2-s_2.11",
-      "org.json4s" %% "json4s-jackson" % "3.6.7",
+      "org.json4s" %% "json4s-jackson" % "3.5.5",
+      "com.fasterxml.jackson.core" % "jackson-databind" % "2.6.7",
       "org.scala-lang.modules" %% "scala-xml" % "1.2.0",
 
       "org.scalatest" %% "scalatest" % "3.0.1" % "test",
