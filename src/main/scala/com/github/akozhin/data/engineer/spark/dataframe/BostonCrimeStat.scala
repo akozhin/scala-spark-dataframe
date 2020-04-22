@@ -84,8 +84,9 @@ object BostonCrimeStat {
       .drop(crimesMonthly("DISTRICT"))
       .drop(frequentCrimeTypes("DISTRICT"))
       .orderBy("district")
+        .select("district","crimes_total", "crimes_monthly", "frequent_crime_types", "lat", "lng")
 
-    crimeStat.show(false)
+    crimeStat.show(50,false)
     println("Output path : " + outputPath)
     crimeStat.write.parquet(outputPath + "boston-crime-stat.parquet")
   }
